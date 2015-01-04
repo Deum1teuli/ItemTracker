@@ -53,6 +53,7 @@
             width: 32px;
             height: auto;
             margin-bottom: -10px!important;
+            margin-top: -3px;
         }
     </style>
 </head>
@@ -65,14 +66,10 @@
         <div id="info" class="column">
             <div>
                 <span class="bold">Seed:</span>  <span class="white" id="seed"></span>
-            </div>
-            <div>
                 <span class="bold">Персонаж:</span>  <span class="white" id="character"></span>
             </div>
             <div>
                 <span class="bold">Гуппи:</span>  <span class="white"><span id="guppyCount">0</span>/3</span>
-            </div>
-            <div>
                 <span class="bold">Повелитель мух:</span>  <span class="white"><span id="lordCount">0</span>/3</span>
             </div>
             <div>
@@ -84,8 +81,8 @@
     </div>
     <script>
         var vals = location.hash.slice(1).split('|#|');
-        var client = vals[0];
-        var pathToIsaacLog = vals[1];
+        var client = vals[0] || 'xsplit';
+        var pathToIsaacLog = vals[1] || 'C:\\Users\\Dom\\Documents\\My Games\\Binding of Isaac Rebirth\\log.txt';
         /*var pathToIsaacLog = 'C:\\Users\\Dom\\Documents\\My Games\\Binding of Isaac Rebirth\\log.txt';
         var client = 'xsplit'; //browser obs xsplit*/
 
@@ -205,6 +202,7 @@
             addCollectible: function (itemId, itemName) {
                 var itemEl = $('<span class="white item"></span>');
                 var item;
+                var replaced = false;
                 for (var i = 0; i < ItemTracker.items.length; i++) {
                     var currentItem = ItemTracker.items[i];
                     if (itemName.match(currentItem.regexp)) {
@@ -214,7 +212,9 @@
                 }
                 if (item) {
                     if (item.active) {
-                        $('#items').find('.active').remove();
+                        if ($('#items').find('.active').remove().length > 0) {
+                            replaced = true;
+                        }
                         itemEl.addClass('active');
                     }
                     itemEl.append('<img class="itemImg" src="' + item.img + '">');
@@ -244,7 +244,9 @@
                     }
                 }
                 $('#items').append(itemEl);
-                itemEl.prev().append(', ');
+                if (!replaced) {
+                    itemEl.prev().append(', ');
+                }
             },
 
             scrollDescriptionsToBottom: function () {
