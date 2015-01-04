@@ -83,8 +83,11 @@
         </div>
     </div>
     <script>
-        var pathToIsaacLog = 'C:\\Users\\Dom\\Documents\\My Games\\Binding of Isaac Rebirth\\log.txt';
-        var client = 'xsplit'; //browser obs xsplit
+        var vals = location.hash.slice(1).split('|#|');
+        var client = vals[0];
+        var pathToIsaacLog = vals[1];
+        /*var pathToIsaacLog = 'C:\\Users\\Dom\\Documents\\My Games\\Binding of Isaac Rebirth\\log.txt';
+        var client = 'xsplit'; //browser obs xsplit*/
 
         var LogProcess = {
             lastLineNum: 0,
