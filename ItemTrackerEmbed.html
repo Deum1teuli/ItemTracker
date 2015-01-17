@@ -188,14 +188,14 @@
 
             newSeed: function (seed) {
                 $('#seed').text(seed);
+            },
+
+            newPlayer: function (playerId) {
                 $('#character').text('');
                 $('#items').html('');
                 $('#descriptions').html('');
                 $('#guppyCount').text('0');
                 $('#lordCount').text('0');
-            },
-
-            newPlayer: function (playerId) {
                 $('#character').text(ItemTracker.characters[playerId]);
             },
 
