@@ -188,7 +188,7 @@
             },
 
             initBrowser: function () {
-                $('body').prepend('<div id="FileReader"></div><span style="margin-top: -10px;"> - нажмите, чтобы указать путь до log.txt (Обычно: C:\\Users\\%username%\\Documents\\My Games\\Binding of Isaac Rebirth) )</span>');
+                $('body').prepend('<div id="FileReader"></div><span style="margin-bottom: 10px;"> - нажмите, чтобы указать путь до log.txt (Обычно: C:\\Users\\%username%\\Documents\\My Games\\Binding of Isaac Rebirth) )</span>');
                 $.getScript('http://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js').done(function () {
                     $('body').append('<div id="FileReader"></div>');
                     swfobject.embedSWF(
