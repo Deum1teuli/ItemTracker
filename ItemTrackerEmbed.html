@@ -229,7 +229,7 @@
                 }
                 for (var i = 0; i < ItemTracker.guppyItems.length; i++) {
                     var currentItem = ItemTracker.guppyItems[i];
-                    if (itemName.match(currentItem) && !currentItem.hasOwnProperty['getted']) {
+                    if (itemName.match(currentItem) && !currentItem.hasOwnProperty('getted')) {
                         var $guppyCount = $('#guppyCount');
                         $guppyCount.text(parseInt($guppyCount.text()) + 1);
                         currentItem.getted = true;
@@ -238,7 +238,7 @@
                 }
                 for (var i = 0; i < ItemTracker.lordOfFliesItems.length; i++) {
                     var currentItem = ItemTracker.lordOfFliesItems[i];
-                    if (itemName.match(currentItem) && !currentItem.hasOwnProperty['getted']) {
+                    if (itemName.match(currentItem) && !currentItem.hasOwnProperty('getted')) {
                         var $lordCount = $('#lordCount');
                         $lordCount.text(parseInt($lordCount.text()) + 1);
                         currentItem.getted = true;
