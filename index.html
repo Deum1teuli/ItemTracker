@@ -188,14 +188,14 @@
             },
 
             initBrowser: function () {
-                $('body').prepend('<div id="FileReader"></div>');
+                $('body').prepend('<div id="FileReader"></div> - нажмите, чтобы указать путь к log.txt (Обычно: C:\\Users\\Dom\\Documents\\My Games\\Binding of Isaac Rebirth) )');
                 $.getScript('http://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js').done(function () {
                     $('body').append('<div id="FileReader"></div>');
                     swfobject.embedSWF(
                         "FileReader.swf",
-                        "FileReader", "100%", "22", "10.0.0",
+                        "FileReader", "66", "22", "10.0.0",
                         "expressInstall.swf", {
-                            text: 'Открыть - нажмите, чтобы указать путь к log.txt (Обычно: C:\\Users\\Dom\\Documents\\My Games\\Binding of Isaac Rebirth) )'
+                            text: 'Открыть'
                         }, {
                             allowScriptAccess: 'always',
                             wmode: 'transparent'
