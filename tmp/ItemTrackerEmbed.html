@@ -249,6 +249,23 @@
             items: {},
             currentItemId: 0,
             $loader: null,
+            timer1: null,
+            timer2: null,
+            reload: function () {
+                var $descriptions = $('#descriptions');
+                $descriptions.dequeue();
+                $descriptions.stop();
+                clearTimeout(Chat.timer1);
+                clearTimeout(Chat.timer2);
+                Chat.queue = [];
+                Chat.rData = {};
+                Chat.items = {};
+                Chat.currentItemId = 0;
+                if (Chat.$loader) {
+                    Chat.$loader.remove();
+                }
+                Chat.$loader = null;
+            },
             insert: function (message) {
                 var matches = message.message.match(/^(\d+)\.$/),
                     items = $('#items .item'),
@@ -305,11 +322,11 @@
                 delete Chat.rData[itemId];
                 $itemDescription.append(Chat.$loader);
                 $descriptions.animate({scrollTop: $itemDescription.offset().top - $descriptions.offset().top + $descriptions.scrollTop()});
-                setTimeout(function () {
+                Chat.timer1 = setTimeout(function () {
                     Chat.$loader.remove();
                     Chat.$loader = null;
                     ItemTracker.scrolling = true;
-                    setTimeout(Chat.showItem, 1000);
+                    Chat.timer2 = setTimeout(Chat.showItem, 1000);
                 }, 9000);
             }
         };
@@ -359,8 +376,7 @@
             },
 
             newPlayer: function (playerId) {
-                $('#descriptions').stop();
-                ItemTracker.scrolling == true;
+                Chat.reload();
                 $('#items').data('slide', false);
                 $('#character').text('');
                 $('#items').html('');
