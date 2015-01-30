@@ -359,6 +359,8 @@
             },
 
             newPlayer: function (playerId) {
+                $('#descriptions').stop();
+                ItemTracker.scrolling == true;
                 $('#items').data('slide', false);
                 $('#character').text('');
                 $('#items').html('');
