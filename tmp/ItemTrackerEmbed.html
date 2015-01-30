@@ -13,6 +13,7 @@
             color: #939496;
             margin: 0;
             padding: 0;
+            font-size: 16px;
         }
         
         #content {
@@ -82,6 +83,13 @@
         #info .item {
             word-break: break-all;
             word-wrap: break-word;
+        }
+        
+        #info .item .number {
+            font-weight: bold;
+            color: tomato;
+            font-size: 80%;
+            line-height: 0px;
         }
         
         #info .item img {
@@ -237,6 +245,7 @@
             },
 
             addCollectible: function (itemId, itemName) {
+                var $items = $('#items');
                 var itemEl = $('<span class="white item"></span>');
                 var item;
                 var replaced = false;
@@ -249,7 +258,7 @@
                 }
                 if (item) {
                     if (item.active) {
-                        if ($('#items').find('.active').remove().length > 0) {
+                        if ($items.find('.active').remove().length > 0) {
                             replaced = true;
                         }
                         itemEl.addClass('active');
@@ -260,10 +269,10 @@
                     var descriptionEl = $('<div></div>').append(itemInDescEl).append(item.localDescription);
                     $('#descriptions').append(descriptionEl);
                     descriptionEl.prev().addClass('descriptionBordered');
-
                 } else {
                     itemEl.append(itemName);
                 }
+                itemEl.prepend('<span class="number">' + ($('#items .item').size() + 1) + '.</span>');
                 for (var i = 0; i < ItemTracker.guppyItems.length; i++) {
                     var currentItem = ItemTracker.guppyItems[i];
                     if (itemName.match(currentItem) && !currentItem.hasOwnProperty('getted')) {
@@ -282,14 +291,26 @@
                         break;
                     }
                 }
-                $('#items').append(itemEl);
+                $items.append(itemEl);
                 /*if (!replaced) {
                     itemEl.prev().append(', ');
                 }*/
+                if (replaced) {
+                    $('#items .item').each(function(num, item) {
+                        $(item).find('.number').text((num + 1) + '.');
+                    });
+                }
                 if (itemEl.prev().text().slice(-2) != ', ')
                 {
                     itemEl.prev().append(', ');
                 }
+                /*$items.stop();
+                if ($items.data('direction') == 'down') {
+                    $items.data('direction', 'up');
+                } else {
+                    $items.data('direction', 'down');
+                }
+                ItemTracker.scrollItems();*/
             },
 
             scrollDescriptionsToBottom: function () {
@@ -305,15 +326,18 @@
 
             scrollItems: function () {
                 var $items = $('#items'),
-                    scrollVal = $items[0].scrollHeight - $items.height();
+                    scrollVal = $items[0].scrollHeight - $items.height(),
+                    scrollTime = 600;
                 if ($items.data('direction') == 'down') {
                     $items.data('direction', 'up');
+                    scrollTime = $items.scrollTop();
                 } else {
                     $items.data('direction', 'down');
+                    scrollTime = scrollVal - $items.scrollTop();
                 }
                 $items.animate({
                     scrollTop: ($items.data('direction') == 'down' ? scrollVal : 0)
-                }, scrollVal * 80, 'linear', ItemTracker.scrollItems).delay(2000);
+                }, scrollTime * 80, 'linear', ItemTracker.scrollItems).delay(2000);
             }
         };
 
