@@ -6,6 +6,9 @@
     <title>ItemTracker</title>
     <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.2/socket.io.min.js"></script>
+    <script src="chats.js"></script>
     <style>
         body {
             background: #000000;
@@ -14,6 +17,22 @@
             margin: 0;
             padding: 0;
             font-size: 16px;
+        }
+        
+        .loader {
+/*            width: 16px;*/
+            height: 16px;
+            position: absolute;
+            left: 65px;
+            top: 5px;
+            z-index: 1000;
+            font-size: 80%;
+            color: #767779;
+            vertical-align: top;
+        }
+        
+        .loader img {
+            padding-right: 5px;
         }
         
         #content {
@@ -65,6 +84,10 @@
             overflow: hidden;
             word-break: break-all;
             word-wrap: break-word;
+        }
+        
+        #descriptions .description {
+            position: relative;
         }
         
         #descriptions .item {
@@ -129,6 +152,19 @@
         var pathToIsaacLog = vals[1] || 'C:\\Users\\Domitori\\Documents\\My Games\\Binding of Isaac Rebirth\\log.txt';
         /*var pathToIsaacLog = 'C:\\Users\\Dom\\Documents\\My Games\\Binding of Isaac Rebirth\\log.txt';
         var client = 'xsplit'; //browser obs xsplit*/
+        var channels = vals[2] ? JSON.parse(vals[2]) : [{
+            s: "sc2tv",
+            c: "scatman"
+        }, {
+            s: "gg",
+            c: "Scatman"
+        }, {
+            s: "twitch",
+            c: "domitori"
+        }, {
+            s: "cg",
+            c: "scatman"
+        }];
 
         var LogProcess = {
             lastLineNum: 0,
@@ -206,7 +242,80 @@
             }
         };
 
+        var Chat = {
+            queue: [],
+            rData: {},
+            users: {},
+            items: {},
+            currentItemId: 0,
+            $loader: null,
+            insert: function (message) {
+                var matches = message.message.match(/^(\d+)\.$/),
+                    items = $('#items .item'),
+                    now = Date.now();
+                if (matches && (matches[1] > 0 && matches[1] <= items.size())) {
+                    if (Chat.users[message.from] && (now - Chat.users[message.from]) < 60000) {
+                        return;
+                    }
+                    Chat.users[message.from] = now;
+                    var itemId = $(items[matches[1] - 1]).data('itemId');
+                    if (Chat.currentItemId == itemId && Chat.$loader) {
+                        Chat.$loader.append(', ' + message.from);
+                        return;
+                    }
+                    if (Chat.items[itemId] && (now - Chat.items[itemId]) < 30000) {
+                        return;
+                    }
+                    for (var user in Chat.users) {
+                        if ((now - Chat.users[user]) > 60000) {
+                            delete Chat.users[user];
+                        }
+                    }
+                    for (var item in Chat.items) {
+                        if ((now - Chat.items[item]) > 30000) {
+                            delete Chat.items[item];
+                        }
+                    }
+                    if (!Chat.rData[itemId]) {
+                        Chat.rData[itemId] = [];
+                    }
+                    Chat.rData[itemId].push(message.from);
+                    if (Chat.queue.indexOf(itemId) < 0) {
+                        Chat.queue.push(itemId);
+                    }
+                    if (Chat.currentItemId == 0) {
+                        Chat.showItem();
+                    }
+                }
+            },
+            insertLog: function() {},
+            showItem: function () {
+                if (Chat.queue.length <= 0) {
+                    Chat.currentItemId = 0;
+                    return;
+                }
+                var itemId = Chat.queue.shift(),
+                    now = Date.now();
+                Chat.items[itemId] = now;
+                Chat.currentItemId = itemId;
+                ItemTracker.scrolling = false;
+                var $itemDescription = $($('#descriptions .collectible-' + itemId).last());
+                var $descriptions = $('#descriptions');
+                Chat.$loader = $('<div class="loader"><img src="ajax-loader.gif">' + (Chat.rData[itemId] ? Chat.rData[itemId].join(', ') : '') + '</div>');
+                delete Chat.rData[itemId];
+                $itemDescription.append(Chat.$loader);
+                $descriptions.animate({scrollTop: $itemDescription.offset().top - $descriptions.offset().top + $descriptions.scrollTop()});
+                setTimeout(function () {
+                    Chat.$loader.remove();
+                    Chat.$loader = null;
+                    ItemTracker.scrolling = true;
+                    setTimeout(Chat.showItem, 1000);
+                }, 9000);
+            }
+        };
+
         var ItemTracker = {
+            scrolling: true,
             characters: ['Isaac', 'Magdalene', 'Cain', 'Judas', '???', 'Eve', 'Samson', 'Azazel', 'Lazarus', 'Eden', 'The Lost'],
             guppyItems: [/^Dead Cat$/i, /^Guppy's Collar$/i, /^Guppy's Head$/i, /^Guppy's Paw$/i, /^Guppy's Tail$/i, /^Guppy's Hair Ball$/i],
             lordOfFliesItems: [/^\?\?\?'s Only Friend$/i, /^BBF$/i, /^Best Bud$/i, /^Big Fan$/i, /^Distant Admiration$/i, /^Forever Alone$/i, /^Halo Of Flies$/i, /^Hive Mind$/i, /^Skatole$/i, /^Smart Fly$/i, /^The Mulligan$/i, /^Infestation$/i],
@@ -225,8 +334,23 @@
                     });
                     $('#loading').remove();
                     $('#content').show();
+                    ItemTracker.connectToChannels();
                     LogProcess.start(client, pathToIsaacLog);
                     ItemTracker.scrollDescriptionsToBottom();
+                });
+            },
+
+            connectToChannels: function () {
+                channels.forEach(function (channel) {
+                    if (channel.s == 'sc2tv') {
+                        new Sc2tvChat(channel.c);
+                    } else if (channel.s == 'twitch') {
+                        new TwitchChat(channel.c);
+                    } else if (channel.s == 'gg') {
+                        new GGChat(channel.c);
+                    } else if (channel.s == 'cg') {
+                        new CGChat(channel.c);
+                    }
                 });
             },
 
@@ -266,7 +390,8 @@
                     itemEl.append('<img class="itemImg" src="' + item.img + '">');
                     itemEl.append(item.localName);
                     var itemInDescEl = itemEl.clone();
-                    var descriptionEl = $('<div></div>').append(itemInDescEl).append(item.localDescription);
+                    var descriptionEl = $('<div class="description"></div>').append(itemInDescEl).append(item.localDescription);
+                    descriptionEl.addClass('collectible-' + itemId);
                     $('#descriptions').append(descriptionEl);
                     descriptionEl.prev().addClass('descriptionBordered');
                 } else {
@@ -291,17 +416,17 @@
                         break;
                     }
                 }
+                itemEl.data('itemId', itemId);
                 $items.append(itemEl);
                 /*if (!replaced) {
                     itemEl.prev().append(', ');
                 }*/
                 if (replaced) {
-                    $('#items .item').each(function(num, item) {
+                    $('#items .item').each(function (num, item) {
                         $(item).find('.number').text((num + 1) + '.');
                     });
                 }
-                if (itemEl.prev().text().slice(-2) != ', ')
-                {
+                if (itemEl.prev().text().slice(-2) != ', ') {
                     itemEl.prev().append(', ');
                 }
                 /*$items.stop();
@@ -316,7 +441,9 @@
             scrollDescriptionsToBottom: function () {
                 var $descriptions = $('#descriptions'),
                     $items = $('#items');
-                $descriptions.scrollTop($descriptions[0].scrollHeight);
+                if (ItemTracker.scrolling) {
+                    $descriptions.scrollTop($descriptions[0].scrollHeight);
+                }
                 if (!$items.data('slide') && $items[0].scrollHeight > $items.height()) {
                     $items.data('slide', true);
                     ItemTracker.scrollItems();

@@ -1517,7 +1517,7 @@
     "localDescription": "Увеличение урона на 0.3,дальности на 0.2, размера персонажа. +1 пустой контейнер здоровья.Уменьшение скорости передвижения на 0.1.",
     "active": false
 }, {
-    "name": "Odd Mushroom (Thin)",
+    "name": "Odd Mushroom",
     "localName": "Чудо-гриб (Тонкий)",
     "img": "http://img3.wikia.nocookie.net/__cb20141111095615/bindingofisaac/ru/images/3/39/Image_2D_0348_0183_64x64.png",
     "localDescription": "Увеличивает скорость атаки на 1.7, уменьшает урон.Увеличивает скорость передвижения на 0.3.\nУменьшает скорость передвижения",
@@ -1967,7 +1967,7 @@
     "localDescription": "Персонаж разрушает камни при касании, +1 полный контейнер здоровья, снижение скорости.",
     "active": false
 }, {
-    "name": "Toothpicks",
+    "name": "Tooth Picks",
     "localName": "Зубочистки",
     "img": "http://img4.wikia.nocookie.net/__cb20141111112711/bindingofisaac/ru/images/0/08/Image_2D_0474_0246_64x64.png",
     "localDescription": "Увеличивает скорострельность на 0.16 и скорость полета слез на 2.Делает слёзы красными,не увеличивая урон.",

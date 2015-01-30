@@ -384,7 +384,7 @@ GGChat.getPaymentsLevel = function (amount) {
 function Sc2tvChat(channel_id) {
     this.static = Sc2tvChat;
     this.channel = channel_id;
-    this.channel_id = Sc2tvChat.getChannelId(channel_id) || null;
+    this.channel_id = '45487654';
     this.last_msg_id = null;
 
 //    Sc2tvChat.loadEmoticons();
