@@ -1337,7 +1337,7 @@
     "localDescription": "+1 черное сердце, +3 бомбы. Вместо некоторых бомб могут выпасть тролль-бомбы и бомбы 1+1.",
     "active": false
 }, {
-    "name": "Meat",
+    "name": "MEAT!",
     "localName": "Мясо",
     "img": "http://img3.wikia.nocookie.net/__cb20141111114838/bindingofisaac/ru/images/0/09/Image_2D_0494_0256_64x64.png",
     "localDescription": "+1 контейнер здоровья,увеличение урона на 0.3.",
