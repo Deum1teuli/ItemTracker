@@ -425,7 +425,7 @@
                 itemEl.prepend('<span class="number">' + ($('#items .item').size() + 1) + '.</span>');
                 for (var i = 0; i < ItemTracker.guppyItems.length; i++) {
                     var currentItem = ItemTracker.guppyItems[i];
-                    if (itemId == currentItem && ItemTracker.alreadyGetted.indexOf(currentItem) >= 0) {
+                    if (itemId == currentItem && ItemTracker.alreadyGetted.indexOf(currentItem) < 0) {
                         var $guppyCount = $('#guppyCount');
                         $guppyCount.text(parseInt($guppyCount.text()) + 1);
                         ItemTracker.alreadyGetted.push(currentItem);
@@ -434,7 +434,7 @@
                 }
                 for (var i = 0; i < ItemTracker.lordOfFliesItems.length; i++) {
                     var currentItem = ItemTracker.lordOfFliesItems[i];
-                    if (itemId == currentItem && ItemTracker.alreadyGetted.indexOf(currentItem) >= 0) {
+                    if (itemId == currentItem && ItemTracker.alreadyGetted.indexOf(currentItem) < 0) {
                         var $lordCount = $('#lordCount');
                         $lordCount.text(parseInt($lordCount.text()) + 1);
                         ItemTracker.alreadyGetted.push(currentItem);
