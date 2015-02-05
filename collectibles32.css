@@ -1,0 +1,2059 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<i class="icon-home"></i>
+```
+*/
+.icon-collectibles_001_thesadonion {
+  background-image: url(collectibles32.png);
+  background-position: -32px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_002_theinnereye {
+  background-image: url(collectibles32.png);
+  background-position: -320px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_003_spoonbender {
+  background-image: url(collectibles32.png);
+  background-position: 0px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_004_cricketshead {
+  background-image: url(collectibles32.png);
+  background-position: -32px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_005_myreflection {
+  background-image: url(collectibles32.png);
+  background-position: 0px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_006_numberone {
+  background-image: url(collectibles32.png);
+  background-position: -64px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_007_bloodofthemartyr {
+  background-image: url(collectibles32.png);
+  background-position: -64px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_008_brotherbobby {
+  background-image: url(collectibles32.png);
+  background-position: -32px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_009_skatole {
+  background-image: url(collectibles32.png);
+  background-position: -64px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_010_haloofflies {
+  background-image: url(collectibles32.png);
+  background-position: -96px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_011_1up {
+  background-image: url(collectibles32.png);
+  background-position: 0px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_012_magicmushroom {
+  background-image: url(collectibles32.png);
+  background-position: -32px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_013_thevirus {
+  background-image: url(collectibles32.png);
+  background-position: -96px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_014_roidrage {
+  background-image: url(collectibles32.png);
+  background-position: -96px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_015_heart {
+  background-image: url(collectibles32.png);
+  background-position: -64px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_016_rawliver {
+  background-image: url(collectibles32.png);
+  background-position: 0px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_017_skeletonkey {
+  background-image: url(collectibles32.png);
+  background-position: -128px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_018_adollar {
+  background-image: url(collectibles32.png);
+  background-position: -128px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_019_boom {
+  background-image: url(collectibles32.png);
+  background-position: -32px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_020_transcendence {
+  background-image: url(collectibles32.png);
+  background-position: -96px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_021_thecompass {
+  background-image: url(collectibles32.png);
+  background-position: -64px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_022_lunch {
+  background-image: url(collectibles32.png);
+  background-position: -128px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_023_dinner {
+  background-image: url(collectibles32.png);
+  background-position: -128px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_024_dessert {
+  background-image: url(collectibles32.png);
+  background-position: -96px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_025_breakfast {
+  background-image: url(collectibles32.png);
+  background-position: -160px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_026_rottenmeat {
+  background-image: url(collectibles32.png);
+  background-position: 0px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_027_woodenspoon {
+  background-image: url(collectibles32.png);
+  background-position: -32px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_028_thebelt {
+  background-image: url(collectibles32.png);
+  background-position: -160px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_029_momsunderwear {
+  background-image: url(collectibles32.png);
+  background-position: -160px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_030_momsheels {
+  background-image: url(collectibles32.png);
+  background-position: -64px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_031_momslipstick {
+  background-image: url(collectibles32.png);
+  background-position: -128px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_032_wirecoathanger {
+  background-image: url(collectibles32.png);
+  background-position: -96px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_033_thebible {
+  background-image: url(collectibles32.png);
+  background-position: -160px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_034_thebookofbelial {
+  background-image: url(collectibles32.png);
+  background-position: 0px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_035_thenecronomicon {
+  background-image: url(collectibles32.png);
+  background-position: -192px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_036_thepoop {
+  background-image: url(collectibles32.png);
+  background-position: -192px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_037_mrboom {
+  background-image: url(collectibles32.png);
+  background-position: -32px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_038_tammyshead {
+  background-image: url(collectibles32.png);
+  background-position: -64px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_039_momsbra {
+  background-image: url(collectibles32.png);
+  background-position: -192px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_040_kamikaze {
+  background-image: url(collectibles32.png);
+  background-position: -160px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_041_momspad {
+  background-image: url(collectibles32.png);
+  background-position: -128px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_042_bobsrottenhead {
+  background-image: url(collectibles32.png);
+  background-position: -192px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_044_teleport {
+  background-image: url(collectibles32.png);
+  background-position: -96px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_045_yumheart {
+  background-image: url(collectibles32.png);
+  background-position: -224px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_046_luckyfoot {
+  background-image: url(collectibles32.png);
+  background-position: 0px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_047_doctorsremote {
+  background-image: url(collectibles32.png);
+  background-position: -32px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_048_cupidsarrow {
+  background-image: url(collectibles32.png);
+  background-position: -224px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_049_shoopdawhoop {
+  background-image: url(collectibles32.png);
+  background-position: -160px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_050_steven {
+  background-image: url(collectibles32.png);
+  background-position: -128px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_051_pentagram {
+  background-image: url(collectibles32.png);
+  background-position: -192px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_052_drfetus {
+  background-image: url(collectibles32.png);
+  background-position: -224px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_053_magneto {
+  background-image: url(collectibles32.png);
+  background-position: -64px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_054_treasuremap {
+  background-image: url(collectibles32.png);
+  background-position: -96px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_055_momseye {
+  background-image: url(collectibles32.png);
+  background-position: -224px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_056_lemonmishap {
+  background-image: url(collectibles32.png);
+  background-position: -192px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_057_distantadmiration {
+  background-image: url(collectibles32.png);
+  background-position: -160px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_058_bookofshadows {
+  background-image: url(collectibles32.png);
+  background-position: 0px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_060_theladder {
+  background-image: url(collectibles32.png);
+  background-position: -256px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_062_charmofthevampire {
+  background-image: url(collectibles32.png);
+  background-position: -256px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_063_thebattery {
+  background-image: url(collectibles32.png);
+  background-position: -32px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_064_steamsale {
+  background-image: url(collectibles32.png);
+  background-position: -224px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_065_anarchistcookbook {
+  background-image: url(collectibles32.png);
+  background-position: -128px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_066_thehourglass {
+  background-image: url(collectibles32.png);
+  background-position: -64px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_067_sistermaggy {
+  background-image: url(collectibles32.png);
+  background-position: -256px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_068_technology {
+  background-image: url(collectibles32.png);
+  background-position: -192px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_069_chocolatemilk {
+  background-image: url(collectibles32.png);
+  background-position: -256px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_070_growthhormones {
+  background-image: url(collectibles32.png);
+  background-position: -96px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_071_minimushroom {
+  background-image: url(collectibles32.png);
+  background-position: -160px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_072_rosary {
+  background-image: url(collectibles32.png);
+  background-position: -224px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_073_cubeofmeat {
+  background-image: url(collectibles32.png);
+  background-position: -128px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_074_aquarter {
+  background-image: url(collectibles32.png);
+  background-position: -256px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_075_phd {
+  background-image: url(collectibles32.png);
+  background-position: -288px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_076_xrayvision {
+  background-image: url(collectibles32.png);
+  background-position: 0px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_077_mylittleunicorn {
+  background-image: url(collectibles32.png);
+  background-position: -32px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_078_bookofrevelations {
+  background-image: url(collectibles32.png);
+  background-position: -288px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_079_themark {
+  background-image: url(collectibles32.png);
+  background-position: -288px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_080_thepact {
+  background-image: url(collectibles32.png);
+  background-position: -64px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_081_deadcat {
+  background-image: url(collectibles32.png);
+  background-position: -224px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_082_lordofthepit {
+  background-image: url(collectibles32.png);
+  background-position: -192px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_083_thenail {
+  background-image: url(collectibles32.png);
+  background-position: -256px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_084_weneedtogodeeper {
+  background-image: url(collectibles32.png);
+  background-position: -160px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_085_deckofcards {
+  background-image: url(collectibles32.png);
+  background-position: -96px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_086_monstrostooth {
+  background-image: url(collectibles32.png);
+  background-position: -288px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_087_lokishorns {
+  background-image: url(collectibles32.png);
+  background-position: -288px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_088_littlechubby {
+  background-image: url(collectibles32.png);
+  background-position: -128px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_089_spidersbite {
+  background-image: url(collectibles32.png);
+  background-position: -224px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_090_smallrock {
+  background-image: url(collectibles32.png);
+  background-position: -192px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_091_spelunkerhat {
+  background-image: url(collectibles32.png);
+  background-position: -256px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_092_superbandage {
+  background-image: url(collectibles32.png);
+  background-position: 0px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_093_thegamekid {
+  background-image: url(collectibles32.png);
+  background-position: -320px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_094_sackofpennies {
+  background-image: url(collectibles32.png);
+  background-position: -320px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_095_robobaby {
+  background-image: url(collectibles32.png);
+  background-position: -32px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_096_littlechad {
+  background-image: url(collectibles32.png);
+  background-position: -64px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_097_bookofsin {
+  background-image: url(collectibles32.png);
+  background-position: -320px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_098_therelic {
+  background-image: url(collectibles32.png);
+  background-position: -160px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_099_littlegish {
+  background-image: url(collectibles32.png);
+  background-position: -288px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_100_littlesteve {
+  background-image: url(collectibles32.png);
+  background-position: -320px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_101_thehalo {
+  background-image: url(collectibles32.png);
+  background-position: -96px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_102_momsbottleofpills {
+  background-image: url(collectibles32.png);
+  background-position: -256px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_103_thecommoncold {
+  background-image: url(collectibles32.png);
+  background-position: -224px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_104_theparasite {
+  background-image: url(collectibles32.png);
+  background-position: -128px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_105_dice {
+  background-image: url(collectibles32.png);
+  background-position: -320px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_106_mrmega {
+  background-image: url(collectibles32.png);
+  background-position: -288px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_107_pinkingshears {
+  background-image: url(collectibles32.png);
+  background-position: -192px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_108_thewafer {
+  background-image: url(collectibles32.png);
+  background-position: -352px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_109_moneyispower {
+  background-image: url(collectibles32.png);
+  background-position: 0px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_110_momscontacts {
+  background-image: url(collectibles32.png);
+  background-position: -32px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_111_thebean {
+  background-image: url(collectibles32.png);
+  background-position: -352px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_112_guardianangel {
+  background-image: url(collectibles32.png);
+  background-position: -352px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_113_demonbaby {
+  background-image: url(collectibles32.png);
+  background-position: -64px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_114_momsknife {
+  background-image: url(collectibles32.png);
+  background-position: -320px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_115_ouijaboard {
+  background-image: url(collectibles32.png);
+  background-position: -160px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_116_9volt {
+  background-image: url(collectibles32.png);
+  background-position: -256px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_117_deadbird {
+  background-image: url(collectibles32.png);
+  background-position: -96px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_118_brimstone {
+  background-image: url(collectibles32.png);
+  background-position: -352px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_119_bloodbag {
+  background-image: url(collectibles32.png);
+  background-position: -224px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_120_oddmushroomthin {
+  background-image: url(collectibles32.png);
+  background-position: -288px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_121_oddmushroomlarge {
+  background-image: url(collectibles32.png);
+  background-position: -192px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_122_whoreofbabylon {
+  background-image: url(collectibles32.png);
+  background-position: -320px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_123_monstermanual {
+  background-image: url(collectibles32.png);
+  background-position: -352px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_124_deadseascrolls {
+  background-image: url(collectibles32.png);
+  background-position: -128px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_125_bobbybomb {
+  background-image: url(collectibles32.png);
+  background-position: 0px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_126_razorblade {
+  background-image: url(collectibles32.png);
+  background-position: -384px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_127_forgetmenow {
+  background-image: url(collectibles32.png);
+  background-position: -384px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_128_foreveralone {
+  background-image: url(collectibles32.png);
+  background-position: -32px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_129_bucketoflard {
+  background-image: url(collectibles32.png);
+  background-position: -288px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_130_apony {
+  background-image: url(collectibles32.png);
+  background-position: -256px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_131_bombbag {
+  background-image: url(collectibles32.png);
+  background-position: -352px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_132_alumpofcoal {
+  background-image: url(collectibles32.png);
+  background-position: -160px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_133_guppyspaw {
+  background-image: url(collectibles32.png);
+  background-position: -64px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_134_guppystail {
+  background-image: url(collectibles32.png);
+  background-position: -384px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_135_ivbag {
+  background-image: url(collectibles32.png);
+  background-position: -320px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_136_bestfriend {
+  background-image: url(collectibles32.png);
+  background-position: -224px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_137_remotedetonator {
+  background-image: url(collectibles32.png);
+  background-position: -384px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_138_stigmata {
+  background-image: url(collectibles32.png);
+  background-position: -96px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_139_momspurse {
+  background-image: url(collectibles32.png);
+  background-position: -192px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_140_bobscurse {
+  background-image: url(collectibles32.png);
+  background-position: -352px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_141_pageantboy {
+  background-image: url(collectibles32.png);
+  background-position: -128px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_142_scapular {
+  background-image: url(collectibles32.png);
+  background-position: -384px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_143_speedball {
+  background-image: url(collectibles32.png);
+  background-position: -288px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_144_bumfriend {
+  background-image: url(collectibles32.png);
+  background-position: -256px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_145_guppyshead {
+  background-image: url(collectibles32.png);
+  background-position: -320px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_146_prayercard {
+  background-image: url(collectibles32.png);
+  background-position: -384px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_147_notchedaxe {
+  background-image: url(collectibles32.png);
+  background-position: -160px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_148_infestation {
+  background-image: url(collectibles32.png);
+  background-position: 0px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_149_ipecac {
+  background-image: url(collectibles32.png);
+  background-position: -416px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_150_toughlove {
+  background-image: url(collectibles32.png);
+  background-position: -416px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_151_themulligan {
+  background-image: url(collectibles32.png);
+  background-position: -32px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_152_technology2 {
+  background-image: url(collectibles32.png);
+  background-position: -352px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_153_mutantspider {
+  background-image: url(collectibles32.png);
+  background-position: -224px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_154_chemicalpeel {
+  background-image: url(collectibles32.png);
+  background-position: -64px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_155_thepeeper {
+  background-image: url(collectibles32.png);
+  background-position: -416px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_156_habit {
+  background-image: url(collectibles32.png);
+  background-position: -96px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_157_bloodylust {
+  background-image: url(collectibles32.png);
+  background-position: -416px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_158_crystalball {
+  background-image: url(collectibles32.png);
+  background-position: -384px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_159_spiritofthenight {
+  background-image: url(collectibles32.png);
+  background-position: -192px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_160_crackthesky {
+  background-image: url(collectibles32.png);
+  background-position: -288px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_161_ankh {
+  background-image: url(collectibles32.png);
+  background-position: -320px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_162_celticcross {
+  background-image: url(collectibles32.png);
+  background-position: -128px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_163_ghostbaby {
+  background-image: url(collectibles32.png);
+  background-position: -352px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_164_bluecandle {
+  background-image: url(collectibles32.png);
+  background-position: -416px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_165_catoninetails {
+  background-image: url(collectibles32.png);
+  background-position: -256px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_166_d20 {
+  background-image: url(collectibles32.png);
+  background-position: -224px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_167_harlequinbaby {
+  background-image: url(collectibles32.png);
+  background-position: -384px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_168_epicfetus {
+  background-image: url(collectibles32.png);
+  background-position: -416px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_169_polyphemus {
+  background-image: url(collectibles32.png);
+  background-position: -160px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_170_daddylonglegs {
+  background-image: url(collectibles32.png);
+  background-position: -448px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_171_spiderbutt {
+  background-image: url(collectibles32.png);
+  background-position: 0px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_172_sacrificialdagger {
+  background-image: url(collectibles32.png);
+  background-position: -32px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_173_mitre {
+  background-image: url(collectibles32.png);
+  background-position: -448px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_174_rainbowbaby {
+  background-image: url(collectibles32.png);
+  background-position: -64px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_175_dadskey {
+  background-image: url(collectibles32.png);
+  background-position: 0px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_176_stemcells {
+  background-image: url(collectibles32.png);
+  background-position: -448px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_177_portableslot {
+  background-image: url(collectibles32.png);
+  background-position: -352px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_178_holywater {
+  background-image: url(collectibles32.png);
+  background-position: -288px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_179_fate {
+  background-image: url(collectibles32.png);
+  background-position: -416px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_180_blackbean {
+  background-image: url(collectibles32.png);
+  background-position: -448px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_181_whitepony {
+  background-image: url(collectibles32.png);
+  background-position: -192px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_182_sacredheart {
+  background-image: url(collectibles32.png);
+  background-position: -96px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_183_toothpicks {
+  background-image: url(collectibles32.png);
+  background-position: -256px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_184_holygrail {
+  background-image: url(collectibles32.png);
+  background-position: -384px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_185_deaddove {
+  background-image: url(collectibles32.png);
+  background-position: -128px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_186_bloodrights {
+  background-image: url(collectibles32.png);
+  background-position: -448px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_187_guppyshairball {
+  background-image: url(collectibles32.png);
+  background-position: -416px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_188_abel {
+  background-image: url(collectibles32.png);
+  background-position: -224px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_189_smbsuperfan {
+  background-image: url(collectibles32.png);
+  background-position: -352px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_190_pyro {
+  background-image: url(collectibles32.png);
+  background-position: -448px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_191_3dollarbill {
+  background-image: url(collectibles32.png);
+  background-position: -160px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_192_telepathyfordummies {
+  background-image: url(collectibles32.png);
+  background-position: -320px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_193_meat {
+  background-image: url(collectibles32.png);
+  background-position: -480px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_194_magic8ball {
+  background-image: url(collectibles32.png);
+  background-position: -384px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_195_momscoinpurse {
+  background-image: url(collectibles32.png);
+  background-position: 0px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_196_squeezy {
+  background-image: url(collectibles32.png);
+  background-position: -288px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_197_jesusjuice {
+  background-image: url(collectibles32.png);
+  background-position: -32px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_198_box {
+  background-image: url(collectibles32.png);
+  background-position: -480px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_199_momskey {
+  background-image: url(collectibles32.png);
+  background-position: -64px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_200_momseyeshadow {
+  background-image: url(collectibles32.png);
+  background-position: -480px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_201_ironbar {
+  background-image: url(collectibles32.png);
+  background-position: -448px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_202_midastouch {
+  background-image: url(collectibles32.png);
+  background-position: -192px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_203_humblingbundle {
+  background-image: url(collectibles32.png);
+  background-position: -416px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_204_fannypack {
+  background-image: url(collectibles32.png);
+  background-position: -256px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_205_sharpplug {
+  background-image: url(collectibles32.png);
+  background-position: -480px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_206_guillotine {
+  background-image: url(collectibles32.png);
+  background-position: -96px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_207_ballofbandages {
+  background-image: url(collectibles32.png);
+  background-position: -128px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_208_championbelt {
+  background-image: url(collectibles32.png);
+  background-position: -480px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_209_buttbombs {
+  background-image: url(collectibles32.png);
+  background-position: -352px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_210_gnawedleaf {
+  background-image: url(collectibles32.png);
+  background-position: -384px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_211_spiderbaby {
+  background-image: url(collectibles32.png);
+  background-position: -320px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_212_guppyscollar {
+  background-image: url(collectibles32.png);
+  background-position: -448px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_213_lostcontact {
+  background-image: url(collectibles32.png);
+  background-position: -224px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_214_anemic {
+  background-image: url(collectibles32.png);
+  background-position: -288px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_215_goathead {
+  background-image: url(collectibles32.png);
+  background-position: -160px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_216_ceremonialrobes {
+  background-image: url(collectibles32.png);
+  background-position: -416px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_217_momswig {
+  background-image: url(collectibles32.png);
+  background-position: -480px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_218_placenta {
+  background-image: url(collectibles32.png);
+  background-position: 0px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_219_oldbandage {
+  background-image: url(collectibles32.png);
+  background-position: -512px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_220_sadbombs {
+  background-image: url(collectibles32.png);
+  background-position: -32px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_221_rubbercement {
+  background-image: url(collectibles32.png);
+  background-position: -512px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_222_antigravity {
+  background-image: url(collectibles32.png);
+  background-position: -64px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_223_pyromaniac {
+  background-image: url(collectibles32.png);
+  background-position: -256px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_224_cricketsbody {
+  background-image: url(collectibles32.png);
+  background-position: -448px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_225_gimpy {
+  background-image: url(collectibles32.png);
+  background-position: -512px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_226_blacklotus {
+  background-image: url(collectibles32.png);
+  background-position: -480px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_227_piggybank {
+  background-image: url(collectibles32.png);
+  background-position: -192px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_228_momsperfume {
+  background-image: url(collectibles32.png);
+  background-position: -512px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_229_monstroslung {
+  background-image: url(collectibles32.png);
+  background-position: -384px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_230_abaddon {
+  background-image: url(collectibles32.png);
+  background-position: -352px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_231_balloftar {
+  background-image: url(collectibles32.png);
+  background-position: -96px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_232_stopwatch {
+  background-image: url(collectibles32.png);
+  background-position: -416px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_233_tinyplanet {
+  background-image: url(collectibles32.png);
+  background-position: -320px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_234_infestation2 {
+  background-image: url(collectibles32.png);
+  background-position: -128px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_236_ecoli {
+  background-image: url(collectibles32.png);
+  background-position: -512px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_237_deathstouch {
+  background-image: url(collectibles32.png);
+  background-position: -480px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_238_keypiece1 {
+  background-image: url(collectibles32.png);
+  background-position: -224px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_239_keypiece2 {
+  background-image: url(collectibles32.png);
+  background-position: -448px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_240_experimentaltreatment {
+  background-image: url(collectibles32.png);
+  background-position: -288px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_241_contractfrombelow {
+  background-image: url(collectibles32.png);
+  background-position: -512px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_242_infamy {
+  background-image: url(collectibles32.png);
+  background-position: -160px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_243_trinityshield {
+  background-image: url(collectibles32.png);
+  background-position: -384px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_244_techpointfive {
+  background-image: url(collectibles32.png);
+  background-position: -544px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_245_2020 {
+  background-image: url(collectibles32.png);
+  background-position: -480px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_246_bluemap {
+  background-image: url(collectibles32.png);
+  background-position: 0px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_247_bffs {
+  background-image: url(collectibles32.png);
+  background-position: -256px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_248_hivemind {
+  background-image: url(collectibles32.png);
+  background-position: -32px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_249_theresoptions {
+  background-image: url(collectibles32.png);
+  background-position: -352px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_250_bogobombs {
+  background-image: url(collectibles32.png);
+  background-position: -416px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_251_starterdeck {
+  background-image: url(collectibles32.png);
+  background-position: -544px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_252_littlebaggy {
+  background-image: url(collectibles32.png);
+  background-position: -512px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_253_magicscab {
+  background-image: url(collectibles32.png);
+  background-position: -192px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_254_bloodclot {
+  background-image: url(collectibles32.png);
+  background-position: -64px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_255_screw {
+  background-image: url(collectibles32.png);
+  background-position: -544px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_256_hotbombs {
+  background-image: url(collectibles32.png);
+  background-position: -320px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_257_firemind {
+  background-image: url(collectibles32.png);
+  background-position: -448px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_258_missingno {
+  background-image: url(collectibles32.png);
+  background-position: -96px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_259_darkmatter {
+  background-image: url(collectibles32.png);
+  background-position: -544px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_260_blackcandle {
+  background-image: url(collectibles32.png);
+  background-position: -128px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_261_proptosis {
+  background-image: url(collectibles32.png);
+  background-position: -224px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_262_missingpage2 {
+  background-image: url(collectibles32.png);
+  background-position: -512px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_264_smartfly {
+  background-image: url(collectibles32.png);
+  background-position: -544px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_265_drybaby {
+  background-image: url(collectibles32.png);
+  background-position: -480px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_266_juicysack {
+  background-image: url(collectibles32.png);
+  background-position: -288px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_267_robobaby2 {
+  background-image: url(collectibles32.png);
+  background-position: -384px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_268_rottenbaby {
+  background-image: url(collectibles32.png);
+  background-position: -416px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_269_headlessbaby {
+  background-image: url(collectibles32.png);
+  background-position: -544px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_270_leech {
+  background-image: url(collectibles32.png);
+  background-position: -160px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_271_mysterysack {
+  background-image: url(collectibles32.png);
+  background-position: -448px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_272_bff {
+  background-image: url(collectibles32.png);
+  background-position: -352px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_273_bobsbrain {
+  background-image: url(collectibles32.png);
+  background-position: -256px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_274_bestbud {
+  background-image: url(collectibles32.png);
+  background-position: -512px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_275_lilbrimstone {
+  background-image: url(collectibles32.png);
+  background-position: 0px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_276_isaacsheart {
+  background-image: url(collectibles32.png);
+  background-position: -576px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_277_lilhaunt {
+  background-image: url(collectibles32.png);
+  background-position: -576px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_278_darkbum {
+  background-image: url(collectibles32.png);
+  background-position: -192px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_279_bigfan {
+  background-image: url(collectibles32.png);
+  background-position: -32px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_280_sissylonglegs {
+  background-image: url(collectibles32.png);
+  background-position: -544px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_281_punchingbag {
+  background-image: url(collectibles32.png);
+  background-position: -480px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_282_howtojump {
+  background-image: url(collectibles32.png);
+  background-position: -320px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_283_d100 {
+  background-image: url(collectibles32.png);
+  background-position: -64px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_284_d4 {
+  background-image: url(collectibles32.png);
+  background-position: -576px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_285_d10 {
+  background-image: url(collectibles32.png);
+  background-position: -96px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_286_blankcard {
+  background-image: url(collectibles32.png);
+  background-position: -576px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_287_bookofsecrets {
+  background-image: url(collectibles32.png);
+  background-position: -288px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_288_boxofspiders {
+  background-image: url(collectibles32.png);
+  background-position: -512px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_289_redcandle {
+  background-image: url(collectibles32.png);
+  background-position: -416px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_290_thejar {
+  background-image: url(collectibles32.png);
+  background-position: -224px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_291_flush {
+  background-image: url(collectibles32.png);
+  background-position: -544px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_292_satanicbible {
+  background-image: url(collectibles32.png);
+  background-position: -384px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_293_headofkrampus {
+  background-image: url(collectibles32.png);
+  background-position: -448px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_294_butterbean {
+  background-image: url(collectibles32.png);
+  background-position: -128px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_295_magicfingers {
+  background-image: url(collectibles32.png);
+  background-position: -576px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_296_converter {
+  background-image: url(collectibles32.png);
+  background-position: -352px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_297_bluebox {
+  background-image: url(collectibles32.png);
+  background-position: -480px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_298_unicornstump {
+  background-image: url(collectibles32.png);
+  background-position: -160px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_299_taurus {
+  background-image: url(collectibles32.png);
+  background-position: -576px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_300_aries {
+  background-image: url(collectibles32.png);
+  background-position: -256px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_301_cancer {
+  background-image: url(collectibles32.png);
+  background-position: -544px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_302_leo {
+  background-image: url(collectibles32.png);
+  background-position: -320px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_303_virgo {
+  background-image: url(collectibles32.png);
+  background-position: -512px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_304_libra {
+  background-image: url(collectibles32.png);
+  background-position: -576px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_305_scorpio {
+  background-image: url(collectibles32.png);
+  background-position: -192px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_306_sagittarius {
+  background-image: url(collectibles32.png);
+  background-position: -608px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_307_capricorn {
+  background-image: url(collectibles32.png);
+  background-position: 0px -608px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_308_aquarius {
+  background-image: url(collectibles32.png);
+  background-position: -32px -608px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_309_pisces {
+  background-image: url(collectibles32.png);
+  background-position: -608px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_310_evesmascara {
+  background-image: url(collectibles32.png);
+  background-position: -608px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_311_judasshadow {
+  background-image: url(collectibles32.png);
+  background-position: -448px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_312_maggysbow {
+  background-image: url(collectibles32.png);
+  background-position: -416px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_313_holymantle {
+  background-image: url(collectibles32.png);
+  background-position: -64px -608px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_314_thunderthighs {
+  background-image: url(collectibles32.png);
+  background-position: -384px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_315_strangeattractor {
+  background-image: url(collectibles32.png);
+  background-position: -480px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_316_cursedeye {
+  background-image: url(collectibles32.png);
+  background-position: -544px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_317_mysteriousliquid {
+  background-image: url(collectibles32.png);
+  background-position: -608px -96px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_318_gemini {
+  background-image: url(collectibles32.png);
+  background-position: -288px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_319_cainseye {
+  background-image: url(collectibles32.png);
+  background-position: -96px -608px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_320_bluebabysonlyfriend {
+  background-image: url(collectibles32.png);
+  background-position: -224px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_321_samsonschains {
+  background-image: url(collectibles32.png);
+  background-position: -576px -224px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_322_mongobaby {
+  background-image: url(collectibles32.png);
+  background-position: -608px -128px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_323_isaacstears {
+  background-image: url(collectibles32.png);
+  background-position: -352px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_324_undefined {
+  background-image: url(collectibles32.png);
+  background-position: -128px -608px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_325_scissors {
+  background-image: url(collectibles32.png);
+  background-position: -512px -352px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_326_breathoflife {
+  background-image: url(collectibles32.png);
+  background-position: -160px -608px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_327_thepolaroid {
+  background-image: url(collectibles32.png);
+  background-position: -608px -160px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_328_thenegative {
+  background-image: url(collectibles32.png);
+  background-position: -576px -256px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_329_theludovicotechnique {
+  background-image: url(collectibles32.png);
+  background-position: -256px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_330_soymilk {
+  background-image: url(collectibles32.png);
+  background-position: -544px -320px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_331_godhead {
+  background-image: url(collectibles32.png);
+  background-position: -320px -544px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_332_lazarusrags {
+  background-image: url(collectibles32.png);
+  background-position: -448px -448px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_333_mind {
+  background-image: url(collectibles32.png);
+  background-position: -416px -480px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_334_body {
+  background-image: url(collectibles32.png);
+  background-position: -480px -416px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_335_soul {
+  background-image: url(collectibles32.png);
+  background-position: -608px -192px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_336_deadonion {
+  background-image: url(collectibles32.png);
+  background-position: -192px -608px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_337_brokenwatch {
+  background-image: url(collectibles32.png);
+  background-position: -640px 0px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_338_boomerang {
+  background-image: url(collectibles32.png);
+  background-position: -384px -512px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_339_safetypin {
+  background-image: url(collectibles32.png);
+  background-position: 0px -640px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_340_caffeinepill {
+  background-image: url(collectibles32.png);
+  background-position: -512px -384px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_341_tornphoto {
+  background-image: url(collectibles32.png);
+  background-position: -640px -32px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_342_bluecap {
+  background-image: url(collectibles32.png);
+  background-position: -32px -640px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_343_latchkey {
+  background-image: url(collectibles32.png);
+  background-position: -64px -640px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_344_matchbook {
+  background-image: url(collectibles32.png);
+  background-position: -640px -64px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_345_synthoil {
+  background-image: url(collectibles32.png);
+  background-position: -576px -288px;
+  width: 32px;
+  height: 32px;
+}
+.icon-collectibles_346_asnack {
+  background-image: url(collectibles32.png);
+  background-position: -288px -576px;
+  width: 32px;
+  height: 32px;
+}
+.icon-questionmark {
+  background-image: url(collectibles32.png);
+  background-position: -640px -96px;
+  width: 32px;
+  height: 32px;
+}
