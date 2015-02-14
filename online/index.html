@@ -135,7 +135,7 @@
             LogProcess.readFile();
         }
         
-        function fileReaded(data) {console.log('readed');
+        function fileReaded(data) {
             LogProcess.processData(data);
         }
 	
@@ -172,7 +172,7 @@
                     LogProcess.lastLineNum -= 1;
                 }
 
-                //console.log(data.split(/\r\n|\r|\n/).length);
+                console.log(data.split(/\r\n|\r|\n/).length);
                 setTimeout(LogProcess.readFile, 5000);
             },
 
