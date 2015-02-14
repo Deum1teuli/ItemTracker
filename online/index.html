@@ -153,8 +153,8 @@
                         wmode: 'transparent'
                     }, {
                         id: 'FileReader'
-                    }, function () {
-						LogProcess.readFile = $('#FileReader').get(0).readFile;
+                    }, function (e) {
+						LogProcess.readFile = e.ref.readFile;
 					}
 				);
             },
