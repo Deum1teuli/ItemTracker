@@ -132,7 +132,7 @@
     <script>
 		function fileSelected() {
 			LogProcess.readFile = $('#FileReader').get(0).readFile;
-			$('#fileOpen').hide();
+			$('#fileOpen').css("position", "absolute").css("left", -9999);
             LogProcess.readFile();
         }
         
