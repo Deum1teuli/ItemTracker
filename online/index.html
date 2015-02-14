@@ -132,6 +132,7 @@
     <script>
 		function fileSelected() {
 			LogProcess.readFile = $('#FileReader').get(0).readFile;
+			$('#fileOpen').hide();
             LogProcess.readFile();
         }
         
@@ -143,7 +144,7 @@
             lastLineNum: 0,
 
             start: function () {
-                $('body').prepend('<div id="FileReader"></div><span style="margin-bottom: 10px;"> - нажмите, чтобы указать путь до log.txt (Обычно: C:\\Users\\%username%\\Documents\\My Games\\Binding of Isaac Rebirth)</span>');
+                $('body').prepend('<div id="fileOpen"><div id="FileReader"></div><span style="margin-bottom: 10px;"> - нажмите, чтобы указать путь до log.txt (Обычно: C:\\Users\\%username%\\Documents\\My Games\\Binding of Isaac Rebirth)</span></div>');
                 swfobject.embedSWF(
                     "FileReader.swf",
                     "FileReader", "66", "22", "10.0.0",
