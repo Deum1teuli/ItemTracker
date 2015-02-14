@@ -218,23 +218,8 @@
                     });
                     $('#loading').remove();
                     $('#content').show();
-                    ItemTracker.connectToChannels();
                     LogProcess.start();
                     ItemTracker.scrollDescriptionsToBottom();
-                });
-            },
-
-            connectToChannels: function () {
-                channels.forEach(function (channel) {
-                    if (channel.s == 'sc2tv') {
-                        new Sc2tvChat(channel.c);
-                    } else if (channel.s == 'twitch') {
-                        new TwitchChat(channel.c);
-                    } else if (channel.s == 'gg') {
-                        new GGChat(channel.c);
-                    } else if (channel.s == 'cg') {
-                        new CGChat(channel.c);
-                    }
                 });
             },
 
