@@ -131,10 +131,11 @@
     </div>
     <script>
 		function fileSelected() {
+			console.log('selected');
             LogProcess.readFile();
         }
         
-        function fileReaded(data) {console.log(data);
+        function fileReaded(data) {
             LogProcess.processData(data);
         }
 	
