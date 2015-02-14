@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ItemTracker</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href="collectibles32.css" rel="stylesheet" type="text/css">
+    <link href="collectibles64.css" rel="stylesheet" type="text/css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+    <style>
+        body {
+            background: #000000;
+            font-family: 'Roboto', sans-serif;
+            color: #939496;
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+        
+        #content {
+            width: 1338px
+            /*1418px*/
+            
+            ;
+            height: 202px
+            /*282px*/
+            
+            ;
+            background: url('ItemTrackerBG.png') no-repeat #202329
+            /*1a0708*/
+            
+            ;
+            padding: 40px 40px;
+        }
+        
+        #items {
+            height: 167px;
+            overflow: hidden;
+        }
+        
+        .column {
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        .bold {
+            font-weight: bold;
+        }
+        
+        .itemImg {
+            display: inline-block;
+            margin-bottom: -24px;
+        }
+        
+        #info {
+            width: 530px;
+            border-right: 1px solid #939496;
+            padding-right: 15px;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #descriptions {
+            width: 770px;
+            padding-left: 15px;
+            height: 100%;
+            overflow: hidden;
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+        
+        #descriptions .description {
+            position: relative;
+        }
+        
+        #descriptions .item {
+            padding-right: 10px;
+        }
+        
+        .descriptionBordered {
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #939496;
+        }
+        
+        .white {
+            color: white;
+        }
+        
+        #info .item {
+            word-break: break-all;
+            word-wrap: break-word;
+        }
+        
+        #info .item .number {
+            font-weight: bold;
+            color: tomato;
+            font-size: 80%;
+            line-height: 0px;
+        }
+        
+        #info .item .itemImg {
+            margin-bottom: -10px!important;
+            margin-top: -3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        Загрузка описания предментов...
+    </div>
+    <div id="content">
+        <div id="info" class="column">
+            <div>
+                <span class="bold">Seed:</span> <span class="white" id="seed"></span>
+                <span class="bold">Персонаж:</span> <span class="white" id="character"></span>
+                <!--</div>
+            <div>-->
+                <span class="bold">Гуппи:</span> <span class="white"><span id="guppyCount">0</span>/3</span>
+                <span class="bold">Лорд мух:</span> <span class="white"><span id="lordCount">0</span>/3</span>
+            </div>
+            <div>
+                <span class="bold">Предметы:</span>
+                <div id="items"></div>
+            </div>
+        </div>
+        <div id="descriptions" class="column">
+        </div>
+    </div>
+    <script>
+		function fileSelected() {
+            LogProcess.readFile();
+        }
+        
+        function fileReaded(data) {
+            LogProcess.processData(data);
+        }
+	
+        var LogProcess = {
+            lastLineNum: 0,
+
+            start: function () {
+                $('body').append('<div id="FileReader"></div>');
+                swfobject.embedSWF(
+                    "FileReader.swf",
+                    "FileReader", "66", "22", "10.0.0",
+                    "expressInstall.swf", {
+                        text: 'Открыть'
+                    }, {
+                        allowScriptAccess: 'always',
+                        wmode: 'transparent'
+                    }, {
+                        id: 'FileReader'
+                    }
+				);
+				LogProcess.readFile = $('#FileReader').get(0).readFile;
+            },
+
+            processData: function (data) {
+                var lines = data.split(/\r\n|\r|\n/);
+                var linesCount = lines.length;
+                if (linesCount < LogProcess.lastLineNum) {
+                    LogProcess.lastLineNum = 0;
+                }
+                lines.splice(0, LogProcess.lastLineNum);
+                LogProcess.processLines(lines);
+                LogProcess.lastLineNum = linesCount;
+                if (!lines[lines.length - 1]) {
+                    LogProcess.lastLineNum -= 1;
+                }
+
+                //console.log(data.split(/\r\n|\r|\n/).length);
+                setTimeout(LogProcess.readFile, 5000);
+            },
+
+            processLines: function (lines) {
+                lines.forEach(function (line) {
+                    //console.log('processLine');
+                    var matches;
+                    matches = line.match(/RNG Start Seed: (.+) \(\d+\)/);
+                    if (matches) {
+                        ItemTracker.newSeed(matches[1]);
+                        return;
+                    }
+                    matches = line.match(/Initialized player with Variant \d and Subtype (\d)/);
+                    if (matches) {
+                        ItemTracker.newPlayer(matches[1]);
+                        return;
+                    }
+                    matches = line.match(/Adding collectible (\d+) \((.+)\)/);
+                    if (matches) {
+                        ItemTracker.addCollectible(matches[1], matches[2]);
+                        return;
+                    }
+                });
+            }
+        };
+
+        var ItemTracker = {
+            scrolling: true,
+            characters: ['Isaac', 'Magdalene', 'Cain', 'Judas', '???', 'Eve', 'Samson', 'Azazel', 'Lazarus', 'Eden', 'The Lost'],
+            guppyItems: ['81', '212', '145', '133', '134', '187'],
+            lordOfFliesItems: ['320', '272', '274', '279', '57', '128', '10', '248', '9', '264', '151', '148'],
+
+            init: function () {
+                $('#content').hide();
+                ItemTracker.items = [];
+
+                $.ajax({
+                    url: 'items_ru.json',
+                    dataType: 'json'
+                }).done(function (data) {
+                    ItemTracker.items = data;
+                    ItemTracker.items.forEach(function (item) {
+                        item.regexp = new RegExp('^' + item.name.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&") + '$', 'i');
+                    });
+                    $('#loading').remove();
+                    $('#content').show();
+                    ItemTracker.connectToChannels();
+                    LogProcess.start();
+                    ItemTracker.scrollDescriptionsToBottom();
+                });
+            },
+
+            connectToChannels: function () {
+                channels.forEach(function (channel) {
+                    if (channel.s == 'sc2tv') {
+                        new Sc2tvChat(channel.c);
+                    } else if (channel.s == 'twitch') {
+                        new TwitchChat(channel.c);
+                    } else if (channel.s == 'gg') {
+                        new GGChat(channel.c);
+                    } else if (channel.s == 'cg') {
+                        new CGChat(channel.c);
+                    }
+                });
+            },
+
+            newSeed: function (seed) {
+                $('#seed').text(seed);
+            },
+
+            newPlayer: function (playerId) {
+                Chat.reload();
+                ItemTracker.alreadyGetted = [];
+                $('#items').data('slide', false);
+                $('#character').text('');
+                $('#items').html('');
+                $('#descriptions').html('');
+                $('#guppyCount').text('0');
+                $('#lordCount').text('0');
+                $('#character').text(ItemTracker.characters[playerId]);
+            },
+
+            addCollectible: function (itemId, itemName) {
+                var $items = $('#items');
+                var itemEl = $('<span class="white item"></span>');
+                var item;
+                var replaced = false;
+                for (var i = 0; i < ItemTracker.items.length; i++) {
+                    var currentItem = ItemTracker.items[i];
+                    if (itemId == currentItem.id) {
+                        item = currentItem;
+                        break;
+                    }
+                }
+                if (item) {
+                    if (item.type == 'active') {
+                        if ($items.find('.active').remove().length > 0) {
+                            replaced = true;
+                        }
+                        itemEl.addClass('active');
+                    }
+                    itemEl.append('<span class="itemImg icon-' + item.gfx + '"></span>');
+                    itemEl.append(item.localName);
+                    var itemInDescEl = itemEl.clone();
+                    itemInDescEl.find('.itemImg').removeClass('icon-' + item.gfx).addClass('icon-' + item.gfx + '-64');
+                    var descriptionEl = $('<div class="description"></div>').append(itemInDescEl).append(item.localDescription);
+                    descriptionEl.addClass('collectible-' + itemId);
+                    $('#descriptions').append(descriptionEl);
+                    descriptionEl.prev().addClass('descriptionBordered');
+                } else {
+                    itemEl.append(itemName);
+                }
+                itemEl.prepend('<span class="number">' + ($('#items .item').size() + 1) + '.</span>');
+                for (var i = 0; i < ItemTracker.guppyItems.length; i++) {
+                    var currentItem = ItemTracker.guppyItems[i];
+                    if (itemId == currentItem && ItemTracker.alreadyGetted.indexOf(currentItem) < 0) {
+                        var $guppyCount = $('#guppyCount');
+                        $guppyCount.text(parseInt($guppyCount.text()) + 1);
+                        ItemTracker.alreadyGetted.push(currentItem);
+                        break;
+                    }
+                }
+                for (var i = 0; i < ItemTracker.lordOfFliesItems.length; i++) {
+                    var currentItem = ItemTracker.lordOfFliesItems[i];
+                    if (itemId == currentItem && ItemTracker.alreadyGetted.indexOf(currentItem) < 0) {
+                        var $lordCount = $('#lordCount');
+                        $lordCount.text(parseInt($lordCount.text()) + 1);
+                        ItemTracker.alreadyGetted.push(currentItem);
+                        break;
+                    }
+                }
+                itemEl.data('itemId', itemId);
+                $items.append(itemEl);
+                /*if (!replaced) {
+                    itemEl.prev().append(', ');
+                }*/
+                if (replaced) {
+                    $('#items .item').each(function (num, item) {
+                        $(item).find('.number').text((num + 1) + '.');
+                    });
+                }
+                if (itemEl.prev().text().slice(-2) != ', ') {
+                    itemEl.prev().append(', ');
+                }
+                /*$items.stop();
+                if ($items.data('direction') == 'down') {
+                    $items.data('direction', 'up');
+                } else {
+                    $items.data('direction', 'down');
+                }
+                ItemTracker.scrollItems();*/
+            },
+
+            scrollDescriptionsToBottom: function () {
+                var $descriptions = $('#descriptions'),
+                    $items = $('#items');
+                if (ItemTracker.scrolling) {
+                    $descriptions.scrollTop($descriptions[0].scrollHeight);
+                }
+                if (!$items.data('slide') && $items[0].scrollHeight > $items.height()) {
+                    $items.data('slide', true);
+                    ItemTracker.scrollItems();
+                }
+                setTimeout(ItemTracker.scrollDescriptionsToBottom, 2000);
+            },
+
+            scrollItems: function () {
+                var $items = $('#items'),
+                    scrollVal = $items[0].scrollHeight - $items.height(),
+                    scrollTime = 600;
+                if ($items.data('direction') == 'down') {
+                    $items.data('direction', 'up');
+                    scrollTime = $items.scrollTop();
+                } else {
+                    $items.data('direction', 'down');
+                    scrollTime = scrollVal - $items.scrollTop();
+                }
+                $items.animate({
+                    scrollTop: ($items.data('direction') == 'down' ? scrollVal : 0)
+                }, scrollTime * 80, 'linear', ItemTracker.scrollItems).delay(2000);
+            }
+        };
+
+        ItemTracker.init();
+
+        //LogProcess.start(client, pathToIsaacLog);
+
+        /*var x = new XMLHttpRequest();
+        x.open('GET', 'http://absolute/', false);
+        x.send(null);
+        alert(x.responseText);*/
+    </script>
+</body>
+
+</html>
