@@ -159,7 +159,7 @@
 				LogProcess.readFile = $('#FileReader').get(0).readFile;
             },
 
-            processData: function (data) {
+            processData: function (data) {console.log(data);
                 var lines = data.split(/\r\n|\r|\n/);
                 var linesCount = lines.length;
                 if (linesCount < LogProcess.lastLineNum) {
