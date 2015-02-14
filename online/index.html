@@ -131,7 +131,6 @@
     </div>
     <script>
 		function fileSelected() {
-			console.log(LogProcess.readFile);
             LogProcess.readFile();
         }
         
@@ -154,9 +153,10 @@
                         wmode: 'transparent'
                     }, {
                         id: 'FileReader'
-                    }
+                    }, function () {
+						LogProcess.readFile = $('#FileReader').get(0).readFile;
+					}
 				);
-				LogProcess.readFile = $('#FileReader').get(0).readFile;
             },
 
             processData: function (data) {
