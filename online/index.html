@@ -91,6 +91,7 @@
         #info .item {
             word-break: break-all;
             word-wrap: break-word;
+			cursor: pointer;
         }
         
         #info .item .number {
@@ -271,6 +272,13 @@
                     itemEl.append(itemName);
                 }
                 itemEl.prepend('<span class="number">' + ($('#items .item').size() + 1) + '.</span>');
+				itemEl.click(function (e) {
+					var $this = $(this),
+						itemId = $this.data('itemId'),
+						$itemDescription = $($('#descriptions .collectible-' + itemId).last()),
+						$descriptions = $('#descriptions');
+					$descriptions.animate({scrollTop: $itemDescription.offset().top - $descriptions.offset().top + $descriptions.scrollTop()});
+				});
                 for (var i = 0; i < ItemTracker.guppyItems.length; i++) {
                     var currentItem = ItemTracker.guppyItems[i];
                     if (itemId == currentItem && ItemTracker.alreadyGetted.indexOf(currentItem) < 0) {
@@ -309,14 +317,15 @@
                     $items.data('direction', 'down');
                 }
                 ItemTracker.scrollItems();*/
+				$('#descriptions').scrollTop($('#descriptions').get(0).scrollHeight);
             },
 
             scrollDescriptionsToBottom: function () {
                 var $descriptions = $('#descriptions'),
                     $items = $('#items');
-                if (ItemTracker.scrolling) {
+                /*if (ItemTracker.scrolling) {
                     $descriptions.scrollTop($descriptions[0].scrollHeight);
-                }
+                }*/
                 if (!$items.data('slide') && $items[0].scrollHeight > $items.height()) {
                     $items.data('slide', true);
                     ItemTracker.scrollItems();
