@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="http://code.createjs.com/tweenjs-0.6.0.min.js"></script>
+    <script src="lib/pixi.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.2/socket.io.min.js"></script>
+    <script src="lib/chats.js"></script>
+    <script src="lib/randomColor.js"></script>
+    <script src="lib/easystar-0.1.13.min.js"></script>
+</head>
+
+<body>
+    <script>
+        var Chat = {
+
+            init: function () {
+                if (!Main.testing) {
+                    new Sc2tvChat('scatman');
+                    new TwitchChat('scatmanok');
+                    new GGChat('Scatman');
+                    new CGChat('scatman');
+                } else {
+                    $.getScript('lib/dummyChats.js').done(function () {
+                        new DummyTwitchChat('streamer');
+                        new DummyGGChat('streamer');
+                        new DummySc2tvChat('streamer');
+                        new DummyCGChat('streamer');
+                    });
+                }
+            },
+
+            insert: function (msg) {
+                var pretender;
+                for (var i = 0; i < Main.pretenders.length; i++) {
+                    var tmpPretender = Main.pretenders[i];
+                    if (msg.source.static.sname == tmpPretender.from && msg.from == tmpPretender.name) {
+                        pretender = tmpPretender;
+                        break;
+                    }
+                }
+                if (pretender) {
+                    if (msg.getEmoticons().length > 0) {
+                        Main.fieldSprite.addChild(Main.fieldSprite.removeChild(pretender.container));
+                        var smileSprite = PIXI.Sprite.fromImage('./assets/bubble.png'),
+                            smile = new PIXI.Sprite(new PIXI.ImageLoader(msg.getEmoticons()[0].image.url).texture);
+                        smile.anchor.x = smile.anchor.y = 0.5;
+                        smile.x = 21;
+                        smile.y = 18;
+                        smile.scale.x = smile.scale.y = Math.min(26 / Math.max(msg.getEmoticons()[0].image.height, 26), 42 / Math.max(msg.getEmoticons()[0].image.width, 42));
+                        smileSprite.alpha = 0;
+                        smileSprite.addChild(smile);
+                        pretender.container.addChild(smileSprite);
+                        createjs.Tween.get(smileSprite).to({
+                            y: -42,
+                            alpha: 1
+                        }, 500).wait(4000).to({
+                            y: 0,
+                            alpha: 0
+                        }, 500).call(function (parent, child) {
+                            parent.removeChild(child);
+                        }, [pretender.container, smileSprite]);
+                    }
+                } else if (msg.message.match(/^готов$/)) {
+                    Main.addPretender(msg.from, msg.source.static.sname);
+                }
+            },
+
+            emoticonsLoaded: function () {},
+            badgesLoaded: function () {},
+
+            insertLog: function () {}
+
+        };
+
+        var Main = {
+
+            peopleTextures: [],
+            pretenders: [],
+            chooseList: [],
+            testing: false,
+
+            init: function () {
+                if (localStorage['testing'] == 'true') {
+                    Main.testing = true;
+                }
+                localStorage.clear();
+
+                //PIXI.scaleModes.DEFAULT = PIXI.scaleModes.NEAREST;
+
+                var assetsToLoader = ['./assets/anaerobic_base.png', './assets/battle_base.png', './assets/crystal_base.png', './assets/energy_base.png', './assets/engi_base.png', './assets/female_base.png', './assets/human_base.png', './assets/mantis_base.png', './assets/rock_base.png', './assets/slug_base.png', './assets/bg.png', './assets/door_sheet.png', './assets/bubble.png', './assets/star.png', './assets/sc2tv.png', './assets/twitch.png', './assets/gg.png', './assets/cg.png'];
+                var loader = new PIXI.AssetLoader(assetsToLoader);
+                loader.onComplete = Main.onAssetsLoaded;
+                loader.load();
+                Main.loader = loader;
+
+                Main.stage = new PIXI.Stage(0xe6e2db);
+                Main.renderer = new PIXI.autoDetectRenderer(1600, 900 /*, {transparent: true}*/ );
+
+                document.body.appendChild(Main.renderer.view);
+            },
+
+            onAssetsLoaded: function () {
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/anaerobic_base.png', 4));
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/battle_base.png', 4));
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/crystal_base.png', 4));
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/energy_base.png', 4));
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/engi_base.png', 4));
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/female_base.png', 4));
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/human_base.png', 4));
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/mantis_base.png', 5));
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/rock_base.png', 4));
+                Main.peopleTextures.push(Main.loadPeopleTexture('./assets/slug_base.png', 4));
+
+                var background = PIXI.Sprite.fromImage('./assets/bg.png');
+                Main.stage.addChild(background);
+
+                var doorTextures = [];
+                PIXI.Texture.fromImage('./assets/door_sheet.png').baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
+                for (var i = 0; i < 4; i++) {
+                    var texture = new PIXI.Texture(PIXI.Texture.fromImage('./assets/door_sheet.png').baseTexture, {
+                        x: i * 35,
+                        y: 0,
+                        width: 35,
+                        height: 35
+                    });
+                    doorTextures.push(texture);
+                }
+                Main.doorOpenTextures = doorTextures.slice(0);
+                Main.doorCloseTextures = doorTextures.reverse();
+
+                var sc2tvDoor = new PIXI.MovieClip(Main.doorCloseTextures);
+                sc2tvDoor.loop = false;
+                sc2tvDoor.animationSpeed = 0.5;
+                sc2tvDoor.rotation = Math.PI / 2;
+                sc2tvDoor.scale.x = 1.4;
+                sc2tvDoor.scale.y = 2.1;
+                sc2tvDoor.x = 788;
+                sc2tvDoor.y = 751;
+                Main.stage.addChild(sc2tvDoor);
+                sc2tvDoor.gotoAndPlay(0);
+                Main.sc2tvDoor = sc2tvDoor;
+
+                var ggDoor = new PIXI.MovieClip(Main.doorCloseTextures);
+                ggDoor.loop = false;
+                ggDoor.animationSpeed = 0.5;
+                ggDoor.rotation = Math.PI / 2;
+                ggDoor.scale.x = 1.4;
+                ggDoor.scale.y = 2.1;
+                ggDoor.x = 956;
+                ggDoor.y = 751;
+                Main.stage.addChild(ggDoor);
+                ggDoor.gotoAndPlay(0);
+                Main.ggDoor = ggDoor;
+
+                var twitchDoor = new PIXI.MovieClip(Main.doorCloseTextures);
+                twitchDoor.loop = false;
+                twitchDoor.animationSpeed = 0.5;
+                twitchDoor.rotation = Math.PI / 2;
+                twitchDoor.scale.x = 1.4;
+                twitchDoor.scale.y = 2.1;
+                twitchDoor.x = 1124;
+                twitchDoor.y = 751;
+                Main.stage.addChild(twitchDoor);
+                twitchDoor.gotoAndPlay(0);
+                Main.twitchDoor = twitchDoor;
+
+                var cgDoor = new PIXI.MovieClip(Main.doorCloseTextures);
+                cgDoor.loop = false;
+                cgDoor.animationSpeed = 0.5;
+                cgDoor.rotation = Math.PI / 2;
+                cgDoor.scale.x = 1.4;
+                cgDoor.scale.y = 2.1;
+                cgDoor.x = 1292;
+                cgDoor.y = 751;
+                Main.stage.addChild(cgDoor);
+                cgDoor.gotoAndPlay(0);
+                Main.cgDoor = cgDoor;
+
+                var field = [
+                    [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+                    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                ];
+                var availablePoints = [];
+                for (var l = 0; l < field.length; l++) {
+                    for (var c = 0; c < field[l].length; c++) {
+                        if (field[l][c] == 0) {
+                            availablePoints.push({
+                                x: c,
+                                y: l
+                            });
+                        }
+                    }
+                }
+                Main.field = field;
+                Main.availablePoints = availablePoints;
+
+                var easystar = new EasyStar.js();
+                easystar.setGrid(Main.field);
+                easystar.setAcceptableTiles([0, 2]);
+                easystar.setTileCost(2, 99999999999);
+                Main.easystar = easystar;
+
+                var fieldSprite = new PIXI.Sprite();
+                fieldSprite.x = 270;
+                fieldSprite.y = 61;
+                Main.stage.addChild(fieldSprite);
+                Main.fieldSprite = fieldSprite;
+
+                var newCount = new PIXI.Text('НОВОБРАНЦЫ: 0', {
+                    stroke: '#000000',
+                    strokeThickness: 4,
+                    font: 'bold 18px Verdana',
+                    fill: '#cccccc',
+                    align: "center"
+                });
+                newCount.x = 1200;
+                newCount.y = 50;
+                Main.stage.addChild(newCount);
+                Main.newCount = newCount;
+
+                var winnersText = new PIXI.Text('', {
+                    stroke: '#000000',
+                    strokeThickness: 4,
+                    font: 'bold 14px Verdana',
+                    fill: '#cccccc',
+                    align: "center"
+                });
+                winnersText.anchor.x = 0.5;
+                winnersText.x = 1370;
+                winnersText.y = 200;
+                Main.stage.addChild(winnersText);
+                Main.winnersText = winnersText;
+
+                createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
+                createjs.Ticker.framerate = 30;
+                createjs.Ticker.addEventListener("tick", Main.update);
+
+                Chat.init();
+
+                Main.onCommand();
+            },
+
+            onCommand: function () {
+                var cmd = localStorage['cmd'];
+                if (cmd == 'get') {
+                    if (Main.chooseList.length >= 1) {
+                        var winnerId = Math.round(Math.random() * (Main.chooseList.length - 1)),
+                            winner = Main.chooseList.splice(winnerId, 1)[0],
+                            star = PIXI.Sprite.fromImage('./assets/star.png');
+                        star.anchor.x = 0.5;
+                        star.anchor.y = 0.55;
+                        star.x = 21;
+                        star.y = 29;
+                        winner.container.addChildAt(star, 0);
+                        createjs.Tween.get(star, {
+                            loop: true
+                        }).to({
+                            rotation: 2 * Math.PI
+                        }, 4000);
+                        if (!localStorage['winners']) {
+                            localStorage['winners'] = winner.from + '|' + winner.name;
+                        } else {
+                            localStorage['winners'] += '\n' + winner.from + '|' + winner.name;
+                        }
+                        Main.winnersText.setText(localStorage['winners']);
+                    }
+                    localStorage.removeItem('cmd');
+                } else if (cmd == 'testing') {
+                    localStorage['testing'] = true;
+                    location.reload();
+                    localStorage.removeItem('cmd');
+                }
+                setTimeout(Main.onCommand, 1000);
+            },
+
+            moveRandom: function () {
+                if (Main.pretenders.length <= 0) {
+                    return;
+                }
+                var pretender = Main.pretenders[Math.round(Math.random() * (Main.pretenders.length - 1))];
+                if (createjs.Tween.hasActiveTweens(pretender.container)) {
+                    return;
+                }
+                var point = Main.availablePoints[Math.round(Math.random() * (Main.availablePoints.length - 1))];
+                if (!point) {
+                    return;
+                }
+                Main.availablePoints.splice(Main.availablePoints.indexOf(point), 1);
+                Main.field[pretender.point.y][pretender.point.x] = 0;
+                Main.availablePoints.push(pretender.point);
+                Main.easystar.findPath(pretender.point.x, pretender.point.y, point.x, point.y, function (path) {
+                    if (!path) {
+                        return;
+                    }
+                    pretender.point = point;
+                    Main.field[pretender.point.y][pretender.point.x] = 2;
+                    createjs.Tween.removeTweens(pretender.container);
+                    var obj = createjs.Tween.get(pretender.container);
+                    for (var i in path) {
+                        var step = path[i];
+                        obj.call(function (step, pretender) {
+                            if (step.x * 42 < pretender.container.x) {
+                                pretender.movieClip.textures = pretender.textures['left'];
+                                pretender.movieClip.gotoAndPlay(0);
+                            } else if (step.x * 42 > pretender.container.x) {
+                                pretender.movieClip.textures = pretender.textures['right'];
+                                pretender.movieClip.gotoAndPlay(0);
+                            } else if (step.y * 42 < pretender.container.y) {
+                                pretender.movieClip.textures = pretender.textures['up'];
+                                pretender.movieClip.gotoAndPlay(0);
+                            } else if (step.y * 42 > pretender.container.y) {
+                                pretender.movieClip.textures = pretender.textures['down'];
+                                pretender.movieClip.gotoAndPlay(0);
+                            }
+                        }, [step, pretender]).to({
+                            x: step.x * 42,
+                            y: step.y * 42
+                        }, 500).call(function () {
+                            pretender.movieClip.gotoAndStop(0);
+                        }, [pretender]);
+                    }
+                });
+            },
+
+            update: function () {
+                Main.easystar.calculate();
+                if (Math.random() > 0.9) {
+                    Main.moveRandom();
+                }
+                Main.renderer.render(Main.stage);
+            },
+
+            addPretender: function (name, from) {
+                var context = document.createElement('canvas').getContext('2d'),
+                    container = new PIXI.Sprite(),
+                    textures = Main.peopleTextures[Math.round(Math.random() * 9)],
+                    movieClip = new PIXI.MovieClip(textures['down']),
+                    point = Main.availablePoints[Math.round(Math.random() * (Main.availablePoints.length - 1))];
+                if (!point) {
+                    return;
+                }
+                var pretender = {
+                    name: name,
+                    from: from,
+                    point: point,
+                    container: container,
+                    movieClip: movieClip,
+                    textures: textures
+                };
+                Main.availablePoints.splice(Main.availablePoints.indexOf(point), 1);
+                movieClip.animationSpeed = 0.3;
+                //movieClip.scale.x = movieClip.scale.y = 1.2;
+                movieClip.anchor.x = movieClip.anchor.y = 0.5;
+                movieClip.x = 21;
+                movieClip.y = 28;
+                //movieClip.gotoAndPlay(0);
+                var startPoint = {
+                    x: 0,
+                    y: 0
+                };
+                if (from == 'sc2tv') {
+                    var ico = PIXI.Sprite.fromImage('./assets/sc2tv.png');
+                    //ico.anchor.x = ico.anchor.y = 1.1;
+                    ico.scale.x = ico.scale.y = 0.5;
+                    ico.x = 30;
+                    ico.y = 16;
+                    container.addChild(ico);
+                    container.x = 462;
+                    container.y = 840;
+                    startPoint = {
+                        x: 11,
+                        y: 16
+                    };
+                    createjs.Tween.removeTweens(Main.sc2tvDoor);
+                    createjs.Tween.get(Main.sc2tvDoor).wait(1100).call(function () {
+                        Main.sc2tvDoor.textures = Main.doorOpenTextures;
+                        Main.sc2tvDoor.gotoAndPlay(0);
+                    }).wait(1100).call(function () {
+                        Main.sc2tvDoor.textures = Main.doorCloseTextures;
+                        Main.sc2tvDoor.gotoAndPlay(0);
+                    });
+                } else if (from == 'gg') {
+                    var ico = PIXI.Sprite.fromImage('./assets/gg.png');
+                    //ico.anchor.x = ico.anchor.y = 1.1;
+                    ico.scale.x = ico.scale.y = 0.5;
+                    ico.x = 30;
+                    ico.y = 16;
+                    container.addChild(ico);
+                    container.x = 630;
+                    container.y = 840;
+                    startPoint = {
+                        x: 15,
+                        y: 16
+                    };
+                    createjs.Tween.removeTweens(Main.ggDoor);
+                    createjs.Tween.get(Main.ggDoor).wait(1100).call(function () {
+                        Main.ggDoor.textures = Main.doorOpenTextures;
+                        Main.ggDoor.gotoAndPlay(0);
+                    }).wait(1100).call(function () {
+                        Main.ggDoor.textures = Main.doorCloseTextures;
+                        Main.ggDoor.gotoAndPlay(0);
+                    });
+                } else if (from == 'twitch') {
+                    var ico = PIXI.Sprite.fromImage('./assets/twitch.png');
+                    //ico.anchor.x = ico.anchor.y = 1.1;
+                    ico.scale.x = ico.scale.y = 0.5;
+                    ico.x = 30;
+                    ico.y = 16;
+                    container.addChild(ico);
+                    container.x = 798;
+                    container.y = 840;
+                    startPoint = {
+                        x: 19,
+                        y: 16
+                    };
+                    createjs.Tween.removeTweens(Main.twitchDoor);
+                    createjs.Tween.get(Main.twitchDoor).wait(1100).call(function () {
+                        Main.twitchDoor.textures = Main.doorOpenTextures;
+                        Main.twitchDoor.gotoAndPlay(0);
+                    }).wait(1100).call(function () {
+                        Main.twitchDoor.textures = Main.doorCloseTextures;
+                        Main.twitchDoor.gotoAndPlay(0);
+                    });
+                } else if (from == 'cg') {
+                    var ico = PIXI.Sprite.fromImage('./assets/cg.png');
+                    //ico.anchor.x = ico.anchor.y = 1.1;
+                    ico.scale.x = ico.scale.y = 0.5;
+                    ico.x = 30;
+                    ico.y = 16;
+                    container.addChild(ico);
+                    container.x = 966;
+                    container.y = 840;
+                    startPoint = {
+                        x: 23,
+                        y: 16
+                    };
+                    createjs.Tween.removeTweens(Main.cgDoor);
+                    createjs.Tween.get(Main.cgDoor).wait(1100).call(function () {
+                        Main.cgDoor.textures = Main.doorOpenTextures;
+                        Main.cgDoor.gotoAndPlay(0);
+                    }).wait(1100).call(function () {
+                        Main.cgDoor.textures = Main.doorCloseTextures;
+                        Main.cgDoor.gotoAndPlay(0);
+                    });
+                }
+                Main.easystar.findPath(startPoint.x, startPoint.y, point.x, point.y, function (path) {
+                    if (!path) {
+                        return;
+                    }
+                    //path.unshift(startPoint);
+                    createjs.Tween.removeTweens(pretender.container);
+                    var obj = createjs.Tween.get(pretender.container);
+                    for (var i in path) {
+                        var step = path[i];
+                        obj.call(function (step, pretender) {
+                            if (step.x * 42 < pretender.container.x) {
+                                pretender.movieClip.textures = pretender.textures['left'];
+                                pretender.movieClip.gotoAndPlay(0);
+                            } else if (step.x * 42 > pretender.container.x) {
+                                pretender.movieClip.textures = pretender.textures['right'];
+                                pretender.movieClip.gotoAndPlay(0);
+                            } else if (step.y * 42 < pretender.container.y) {
+                                pretender.movieClip.textures = pretender.textures['up'];
+                                pretender.movieClip.gotoAndPlay(0);
+                            } else if (step.y * 42 > pretender.container.y) {
+                                pretender.movieClip.textures = pretender.textures['down'];
+                                pretender.movieClip.gotoAndPlay(0);
+                            }
+                        }, [step, pretender]).to({
+                            x: step.x * 42,
+                            y: step.y * 42
+                        }, (i == 0) ? 2000 : 500).call(function () {
+                            pretender.movieClip.gotoAndStop(0);
+                        }, [pretender]);
+                    }
+                });
+                container.addChild(movieClip);
+                context.font = "bold 10px Verdana";
+                var sliced;
+                if (context.measureText(name).width > 56) {
+                    sliced = name.slice(Math.round(name.length / 2), name.length);
+                    name = name.slice(0, Math.round(name.length / 2));
+                }
+                var nameText = new PIXI.Text(name, {
+                    stroke: randomColor({
+                        luminosity: 'light',
+                        hue: 'random'
+                    }),
+                    strokeThickness: 4,
+                    font: context.font,
+                    fill: randomColor({
+                        luminosity: 'dark',
+                        hue: 'monochrome'
+                    }),
+                    align: "center"
+                });
+                nameText.anchor.x = nameText.anchor.y = 0.5;
+                nameText.x = 21;
+                nameText.y = 9;
+                nameText.scale.x = 42 / nameText.width;
+                container.addChild(nameText);
+                if (sliced) {
+                    var slicedText = new PIXI.Text(sliced, nameText.style);
+                    nameText.y = 4;
+                    slicedText.anchor.x = slicedText.anchor.y = 0.5;
+                    slicedText.x = 21;
+                    slicedText.y = 14;
+                    slicedText.scale.x = 42 / slicedText.width;
+                    container.addChild(slicedText);
+                }
+                Main.fieldSprite.addChild(container);
+                Main.pretenders.push(pretender);
+                Main.chooseList.push(pretender);
+                Main.field[point.y][point.x] = 2;
+                Main.newCount.setText('НОВОБРАНЦЫ: ' + Main.pretenders.length);
+            },
+
+            loadPeopleTexture: function (name, countPerAnimation) {
+                var result = {},
+                    animations = ['down', 'right', 'up', 'left'],
+                    baseTexture = PIXI.Texture.fromImage(name);
+                baseTexture.baseTexture.scaleMode = PIXI.scaleModes.NEAREST;
+                for (var i = 0; i < animations.length; i++) {
+                    var currentAnimation = animations[i];
+                    result[currentAnimation] = [];
+                    for (var j = 0; j < countPerAnimation; j++) {
+                        var texture = new PIXI.Texture(baseTexture.baseTexture, {
+                            x: j * 35 + ((i == 1 || i == 3) ? (35 * countPerAnimation) : 0),
+                            y: ((i == 2 || i == 3) ? 35 : 0),
+                            width: 35,
+                            height: 35
+                        });
+                        result[currentAnimation].push(texture);
+                    }
+                }
+                return result;
+            }
+
+        };
+
+        Main.init();
+    </script>
+</body>
+
+</html>
